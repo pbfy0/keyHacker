@@ -7,7 +7,13 @@ $| = 1;
 
  my $pass = "password";
  my $PORT = 9000;          # pick something not in use
- GetOptions("password=s" => \$pass, "port=i" => \$PORT);
+ my $daemon = "";
+ GetOptions("password=s" => \$pass, "port=i" => \$PORT, "daemon=s" => \$daemon);
+ if($daemon ne ""){
+	close STDOUT;
+	open STDOUT, "> $daemon";
+	exit if(fork());
+}
  my %OS = ("linux" => "linux", "darwin" => "mac", "MSWin32" => "windows");
  my $writer = "writer/$OS{$^O}.pl";
  my $server = IO::Socket::INET->new( Proto     => "tcp",
