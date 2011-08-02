@@ -1,13 +1,16 @@
 #!/usr/bin/perl -w
 $| = 1;
+ use strict;
  use IO::Socket;
  use Net::hostent;      # for OOish version of gethostbyaddr
  use Getopt::Long;
+ use File::Basename;
 #  use X11::GUITest qw/ SendKeys /;
-
+ chdir dirname($0);
  my $pass = "password";
  my $PORT = 9000;          # pick something not in use
  my $daemon = "";
+ my $argbkup = @ARGV;
  GetOptions("password=s" => \$pass, "port=i" => \$PORT, "daemon=s" => \$daemon);
  if($daemon ne ""){
 	close STDOUT;
