@@ -26,7 +26,7 @@
     else {
         # copy standard input to the socket
         while (defined ($line = <STDIN>)) {
-            print $handle $line;
+            print $handle "K$line";
         }
         exit(0);                # just in case
     }

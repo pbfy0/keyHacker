@@ -10,21 +10,21 @@
                                     PeerAddr  => $host,
                                     PeerPort  => $kport)
                || die "can't connect to port $kport on $host: $!";
-    $mouse = IO::Socket::INET->new(Proto     => "tcp",
-                                    PeerAddr  => $host,
-                                    PeerPort  => $mport)
-               || die "can't connect to port $mport on $host: $!";
-
+#    $mouse = IO::Socket::INET->new(Proto     => "tcp",
+#                                    PeerAddr  => $host,
+#                                    PeerPort  => $mport)
+#               || die "can't connect to port $mport on $host: $!";
+#
     $key->autoflush(1);       # so output gets there right away
-    $mouse->autoflush(1);
+#    $mouse->autoflush(1);
     print STDERR "[Connected to $host:$kport]\n";
-    print STDERR "[Connected to $host:$mport]\n";
+#    print STDERR "[Connected to $host:$mport]\n";
     print $key "password\n";
-    print $mouse "password\n";
+#    print $mouse "password\n";
     my $pid;
     if($pid = fork()){
 	while(<STDIN>){
-		print $key $_;
+		print $key "K$_";
 	}
 	kill("TERM", $pid);
     }else{
@@ -35,7 +35,7 @@
 		($x, $y, $s) = GetMousePos();
 		($rx, $ry) = ($x-$ox,$y-$oy);
 #		print "$rx $ry\n";
-		print $mouse "$rx $ry\n" if($rx != 0 && $ry != 0);
+		print $key "M$rx $ry\n" if($rx != 0 && $ry != 0);
 		($ox, $oy) = ($x, $y);
 #		sleep 0.5;
 	}
