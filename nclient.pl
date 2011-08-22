@@ -3,7 +3,7 @@
     use IO::Socket;
     use X11::GUITest qw(GetMousePos);
     my ($host, $kport, $mport, $kidpid, $key, $mouse);
-    unless (@ARGV == 3) { die "usage: $0 host textport mouseport" }
+    unless (@ARGV == 2) { die "usage: $0 host port" }
     ($host, $kport, $mport) = @ARGV;
     # create a tcp connection to the specified host and port
     $key = IO::Socket::INET->new(Proto     => "tcp",
