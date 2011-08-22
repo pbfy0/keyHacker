@@ -35,8 +35,9 @@
 		($x, $y, $s) = GetMousePos();
 		($rx, $ry) = ($x-$ox,$y-$oy);
 #		print "$rx $ry\n";
-		print $mouse "$rx $ry\n";
+		print $mouse "$rx $ry\n" if($rx != 0 && $ry != 0);
 		($ox, $oy) = ($x, $y);
+#		sleep 0.5;
 	}
     }
 $SIG{INT} = sub {kill("TERM", $pid);}

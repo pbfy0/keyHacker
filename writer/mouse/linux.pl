@@ -1,6 +1,6 @@
 #!/usr/bin/perl
 
-use X11::GUITest qw/ MoveMouseAbs GetMousePos /;
+use X11::GUITest qw( MoveMouseAbs GetMousePos );
 my ($x, $y, $s, $cx, $cy);
 open FH, ">test";
 while(<STDIN>){
