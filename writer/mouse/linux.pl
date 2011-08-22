@@ -2,7 +2,7 @@
 
 use X11::GUITest qw( MoveMouseAbs GetMousePos );
 my ($x, $y, $s, $cx, $cy);
-open FH, ">test";
+#open FH, ">test";
 while(<STDIN>){
 #	print FH $_;
 	chomp;
