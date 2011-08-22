@@ -63,6 +63,7 @@ while ($client = $server->accept()) {
 	if($_ ne $pass){
 		print "[$name failed to authenticate]\n";
 		print $client "Authentication failure\n";
+	        delete $pids{$cpid};
 		close $client;
 		exit;
 	}
